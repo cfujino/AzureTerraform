@@ -72,6 +72,7 @@ jobs:
         run: terraform plan -no-color -out=tfplan
 
       - name: comment terraform plan
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         env:
           PLAN: ${{ steps.plan.outputs.stdout }}
