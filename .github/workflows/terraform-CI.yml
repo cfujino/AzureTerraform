@@ -63,7 +63,7 @@ jobs:
           tflint
 
       - name: run checkov security scan
-        uses: bridgecrewio/checkov-actoin@master
+        uses: bridgecrewio/checkov-action@master
         with:
           directory: terraform 
 
