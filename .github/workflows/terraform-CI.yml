@@ -52,6 +52,14 @@ jobs:
           pwd
           ls -la
           find . -maxdepth 2 -type f
+
+      - name: Show Terraform files
+        run: |
+          echo "----- providers.tf -----"
+          cat providers.tf
+          echo
+          echo "----- versions.tf -----"
+          cat versions.tf
       - name: Terraform Init
         run: terraform init
 
