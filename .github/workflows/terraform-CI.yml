@@ -47,7 +47,11 @@ jobs:
 
       - name: Format check
         run: terraform fmt -check -recursive
-
+      - name: Debug
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 2 -type f
       - name: Terraform Init
         run: terraform init
 
