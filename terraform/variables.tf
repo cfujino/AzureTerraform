@@ -8,6 +8,7 @@ variable "resource_group_name" {
 type = string
 }
 
+/*
 variable "vm_name" {
   default = "ollama-vm"
 type = string
@@ -17,3 +18,4 @@ variable "admin_username" {
   default = "azureuser"
 type = string
 }
+*/
