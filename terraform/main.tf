@@ -97,10 +97,36 @@ resource "azurerm_bastion_host" "bastion" {
     public_ip_address_id = azurerm_public_ip.bastion_pip.id
   }
 }
+resource "azurerm_linux_virtual_machine" "ollama_vm" {
 
-network_interface_ids = [
+  name                = "ollama-vm"
+  resource_group_name = azurerm_resource_group.ollama_rg.name
+  location            = azurerm_resource_group.ollama_rg.location
+
+  size = "Standard_D4s_v5"
+
+  admin_username = "azureuser"
+
+  network_interface_ids = [
     azurerm_network_interface.vm_nic.id
-]
+  ]
 
+  disable_password_authentication = true
 
+  admin_ssh_key {
+    username   = "azureuser"
+    public_key = file("~/.ssh/id_rsa.pub")
+  }
 
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku        = "22_04-lts"
+    version   = "latest"
+  }
+}
